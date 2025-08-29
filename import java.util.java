@@ -35,8 +35,27 @@ public class UtilidadesTexto {
         }
         return contador;
     }
+    public static String Encriptar(String frase){
+        String encriptada = frase.replaceAll("a", "@")
+                         .replaceAll("e", "&")
+                         .replaceAll("i", "!")
+                         .replaceAll("o", "*")
+                         .replaceAll("u", "#");
 
-    public static void main(String[] args) {  
+        return encriptada;                
+    }
+
+    public static String Desencriptar(String encriptada){
+        String Desencriptada = encriptada.replaceAll("@", "a")
+                         .replaceAll("&", "e")
+                         .replaceAll("!", "i")
+                         .replaceAll("*", "o")
+                         .replaceAll("#", "u");
+
+        return Desencriptada;                
+    }
+    public static void menú(){
+
     }
 }
 
