@@ -22,6 +22,7 @@ public class UtilidadesTexto {
         if (!limpia.matches("[a-z]+")) {
             System.out.println("Advertencia: La frase contiene números o símbolos. Palíndromo solo evalúa letras.");
             return false;
+        }
         String reverso = new StringBuilder(limpia).reverse().toString();
         return limpia.equals(reverso);
     }
