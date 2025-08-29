@@ -4,6 +4,11 @@ public class UtilidadesTexto {
     public static String ingresarFrase(Scanner sc) {
         System.out.print("Ingresa la frase a evaluar: ");
         String frase = sc.nextLine();
+        while (frase.trim().isEmpty()) {
+            System.out.println("Error: La frase no puede estar vacía.");
+            System.out.print("Ingresa la frase a evaluar: ");
+            frase = sc.nextLine();
+        }
         return frase;
     }
 
@@ -14,6 +19,9 @@ public class UtilidadesTexto {
 
     public static boolean revesDerecho(String frase) {
         String limpia = fraseLimpia(frase);
+        if (!limpia.matches("[a-z]+")) {
+            System.out.println("Advertencia: La frase contiene números o símbolos. Palíndromo solo evalúa letras.");
+            return false;
         String reverso = new StringBuilder(limpia).reverse().toString();
         return limpia.equals(reverso);
     }
@@ -35,16 +43,23 @@ public class UtilidadesTexto {
         return contador;
     }
     public static String encriptar(String frase){
+        if (!frase.matches("[a-zA-Z\\s]+")) {
+            System.out.println("Advertencia: La frase contiene números o símbolos. Solo se encriptarán las letras.");
+        }
         String encriptada = frase.replaceAll("a", "@")
                          .replaceAll("e", "&")
                          .replaceAll("i", "!")
                          .replaceAll("o", "*")
                          .replaceAll("u", "#");
 
-        return encriptada;                
+        return encriptada
+        ;                
     }
 
     public static String desencriptar(String encriptada){
+        if (!encriptada.matches(".*[@&!*#].*")) {
+            System.out.println("Advertencia: La frase no parece estar encriptada.");
+        }
         String desencriptada = encriptada.replaceAll("@", "a")
                          .replaceAll("&", "e")
                          .replaceAll("!", "i")
@@ -88,6 +103,11 @@ public class UtilidadesTexto {
 
         do {
             mostrarMenu();
+            if (!sc.hasNextInt()) {
+                System.out.println("Error: Debes ingresar un número entre 1 y 5.");
+                sc.nextLine(); 
+                continue;
+            }
             opcion = sc.nextInt();
             sc.nextLine();
 
@@ -103,8 +123,8 @@ public class UtilidadesTexto {
         } while (opcion != 5);
         sc.close();
     }
+
     public static void main(String[] args){
         iniciarPrograma();
     }
 }
-
